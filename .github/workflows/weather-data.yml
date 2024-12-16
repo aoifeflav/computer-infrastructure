@@ -3,11 +3,21 @@ name: Daily Weather Data Collection
 on:
   schedule:
     - cron: '0 10 * * *'
-  workflow_dispatch: 
+  workflow_dispatch:
 
 jobs:
   collect-weather-data:
     runs-on: ubuntu-latest
+
     steps:
+      # Checkout repository to access files
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      # Make weather.sh executable
+      - name: Make weather.sh executable
+        run: chmod +x ./weather.sh
+
+      # Run the weather.sh script
       - name: Run weather.sh script
         run: ./weather.sh
