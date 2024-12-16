@@ -11,4 +11,3 @@ jobs:
     steps:
       - name: Run weather.sh script
         run: ./weather.sh
-
