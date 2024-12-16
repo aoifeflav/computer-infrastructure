@@ -12,5 +12,7 @@ jobs:
         run: wget --version
       - name: Test curl
         run: curl --version
+      - name: Test brew
+        run: brew --version
       
 
