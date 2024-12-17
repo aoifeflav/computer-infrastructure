@@ -14,6 +14,13 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v2
 
+      #clone the repository
+      - name: Clone computer-infrastructure repository
+        uses: actions/checkout@v2
+        with:
+          repository: aoifeflav/computer-infrastructure
+          path: computer-infrastructure # Optional: specify where to clone the repo
+
       # Make weather.sh executable
       - name: Make weather.sh executable
         run: chmod +x ./weather.sh
