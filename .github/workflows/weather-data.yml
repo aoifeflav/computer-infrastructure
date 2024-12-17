@@ -2,7 +2,7 @@ name: Daily Weather Data Collection
 
 on:
   schedule:
-    - cron: '0 10 * * *'
+    - cron: '0 10 * * *' # Runs daily at 10 AM
   workflow_dispatch:
 
 jobs:
@@ -10,16 +10,16 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      # Checkout repository to access files
-      - name: Checkout repository
+      # Checkout the current repository
+      - name: Checkout current repository
         uses: actions/checkout@v2
 
-      #clone the repository
+      # Clone the computer-infrastructure repository
       - name: Clone computer-infrastructure repository
         uses: actions/checkout@v2
         with:
           repository: aoifeflav/computer-infrastructure
-          path: computer-infrastructure # Optional: specify where to clone the repo
+          path: computer-infrastructure # Optional custom directory for the cloned repo
 
       # Make weather.sh executable
       - name: Make weather.sh executable
@@ -28,3 +28,14 @@ jobs:
       # Run the weather.sh script
       - name: Run weather.sh script
         run: ./weather.sh
+
+      # Commit and push changes back to the repository
+      - name: Commit and push changes
+        run: |
+          git config --local user.name "github-actions[bot]"
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git add .
+          git commit -m "Update weather data"
+          git push
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
