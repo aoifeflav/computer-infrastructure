@@ -5,6 +5,9 @@ on:
     - cron: '0 10 * * *' # Runs daily at 10 AM
   workflow_dispatch:
 
+permissions:
+  contents: write
+    
 jobs:
   collect-weather-data:
     runs-on: ubuntu-latest
