@@ -21,7 +21,7 @@ jobs:
       - name: Clone computer-infrastructure repository
         uses: actions/checkout@v2
         with:
-          repository: aoifeflav/computer-infrastructure
+          repository: https://github.com/aoifeflav/computer-infrastructure.git
           path: computer-infrastructure # Optional custom directory for the cloned repo
 
       # Make weather.sh executable
